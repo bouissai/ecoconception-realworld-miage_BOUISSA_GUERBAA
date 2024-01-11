@@ -6,6 +6,19 @@
     </div>
   </div>
 
+
+  <h1>ouuuuuuuu</h1>
+  <p-carousel [value]="products" [numVisible]="3" [numScroll]="3" [circular]="true" [autoplayInterval]="100">
+    <ng-template let-product pTemplate="item">
+      <div class="border-1 surface-border border-round m-2 text-center py-5 px-3">
+        <div class="mb-3">
+          <img src="./assets/nshhs.png" class="w-6 shadow-2"  alt="maroc"/>
+        </div>
+      </div>
+    </ng-template>
+  </p-carousel>
+
+
   <div class="container page">
     <div class="row">
       <div class="col-md-9">

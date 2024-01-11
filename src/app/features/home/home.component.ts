@@ -5,10 +5,14 @@ import { ArticleListConfig } from "../../core/models/article-list-config.model";
 import { AsyncPipe, NgClass, NgForOf } from "@angular/common";
 import { ArticleListComponent } from "../../shared/article-helpers/article-list.component";
 import { takeUntil, tap } from "rxjs/operators";
-import { Subject } from "rxjs";
+import {interval, Subject, Subscription} from "rxjs";
 import { UserService } from "../../core/services/user.service";
 import { LetDirective } from "@rx-angular/template/let";
 import { ShowAuthedDirective } from "../../shared/show-authed.directive";
+import {ButtonModule} from "primeng/button";
+import {TagModule} from "primeng/tag";
+import {CarouselModule} from "primeng/carousel";
+import { Product } from "src/app/core/models/product";
 
 @Component({
   selector: "app-home-page",
@@ -21,11 +25,15 @@ import { ShowAuthedDirective } from "../../shared/show-authed.directive";
     LetDirective,
     NgForOf,
     ShowAuthedDirective,
+    ButtonModule,
+    TagModule,
+    CarouselModule,
   ],
   standalone: true,
 })
 export class HomeComponent implements OnInit, OnDestroy {
   isAuthenticated = false;
+  private sub!: Subscription ;
   listConfig: ArticleListConfig = {
     type: "all",
     filters: {},
@@ -36,6 +44,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   tagsLoaded = false;
   destroy$ = new Subject<void>();
 
+  products : string[]= ["blue-band.jpg","blue-band.jpg","blue-band.jpg"]
   constructor(
     private readonly router: Router,
     private readonly userService: UserService
@@ -56,6 +65,13 @@ export class HomeComponent implements OnInit, OnDestroy {
       .subscribe(
         (isAuthenticated: boolean) => (this.isAuthenticated = isAuthenticated)
       );
+
+      this.sub = interval(20000).subscribe(()=>{
+        location.reload();
+      })
+
+
+
   }
 
   ngOnDestroy(): void {
@@ -73,4 +89,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     // Otherwise, set the list object
     this.listConfig = { type: type, filters: filters };
   }
+
+
 }
