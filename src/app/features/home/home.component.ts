@@ -66,11 +66,10 @@ export class HomeComponent implements OnInit, OnDestroy {
         (isAuthenticated: boolean) => (this.isAuthenticated = isAuthenticated)
       );
 
-      this.sub = interval(20000).subscribe(()=>{
+    // le code ci-dessous correspond à un reflow
+      this.sub = interval(15000).subscribe(()=>{
         location.reload();
       })
-
-
 
   }
 
