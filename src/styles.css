@@ -1,1 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+/* styles.css */
+@font-face {
+  font-family: 'BungeeSpice';
+  src: url('src/assets/Bungee_Spice/BungeeSpice-Regular.ttf') format('truetype');
+}
+body {
+  font-family: 'BungeeSpice', sans-serif;
+}
