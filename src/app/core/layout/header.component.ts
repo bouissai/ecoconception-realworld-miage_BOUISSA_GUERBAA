@@ -12,4 +12,10 @@ import { ShowAuthedDirective } from "../../shared/show-authed.directive";
 })
 export class HeaderComponent {
   currentUser$ = inject(UserService).currentUser;
+
+  bruit() {
+    const audio = new Audio();
+    audio.src = 'assets/ouais-cest-greg.mp3';
+    audio.play();
+  }
 }
